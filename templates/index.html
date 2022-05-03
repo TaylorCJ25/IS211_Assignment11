@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}?bust={{cache_bust}}">
+</head>
+<body>
+    <h1>My To Do List</h1>
+<form action="submit" method="post">
+Task:
+<input type="text" name="task"></input><br/>
+Email:
+<input type="text" name="email"></input><br/>
+Priority:
+<select name="priority">
+  <option value="high">High</option>
+  <option value="medium">Medium</option>
+  <option value="low">Low</option>
+</select><br/>
+<button>
+Add To Do Item
+</button>
+</form>
+
+<form action="clear" method="post">
+
+<button>
+Clear List
+</button>
+</form>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Email</th>
+            <th>Priority</th>
+        </tr>
+        {% for todo in todo_list %}
+        <tr>
+            <td>{{todo[0]}}</td>
+            <td>{{todo[1]}}</td>
+            <td>{{todo[2]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>
